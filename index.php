@@ -6,6 +6,7 @@
     $dsn ='mysql:host=localhost;dbname=secret_board;charset=utf8';
     $user = 'bbsuser';
     $password = 'password';
+    $name = $_POST['name'];
 
     $page = 0;
     if (isset($_GET['page']) && $_GET['page'] > 0){
@@ -25,6 +26,7 @@
     } catch (PDOException $e){
         echo 'エラー：' . $e->getMessage();
     }
+
 ?>
 <html>
 <head>
@@ -37,6 +39,7 @@
     <a href="logout.php">ログアウト</a>
     <form action="write.php" method="post">
         <textarea name="content" cols="40" rows="4"></textarea>
+        <input type="hidden" name="postedBy" value="<?php echo $name ?>">
         <p><input type="submit" value="投稿">
     </form>
     <hr />
