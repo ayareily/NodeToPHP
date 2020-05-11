@@ -9,11 +9,6 @@
         exit();
     }
 
-    if (!preg_match("/^[0-9]{4}$/", $pass)){
-        header('Location: index.php');
-        exit();
-    }
-
     if ($token !=sha1(session_id())){
         header('Location: index.php');
         exit();
