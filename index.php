@@ -34,6 +34,7 @@
 <body>
     <h1>秘密の匿名掲示板</h1>
     <h2>新規投稿</h2>
+    <a href="logout.php">ログアウト</a>
     <form action="write.php" method="post">
         <textarea name="content" cols="40" rows="4"></textarea>
         <p><input type="submit" value="投稿">
@@ -64,7 +65,7 @@
     $max_page = ceil($comments / $num);
     echo '<p>';
     for ($i =1; $i <= $max_page; $i++){
-        echo '<a href="bbs.php?page=' . $i . '">' . $i . '</a>&nbsp;';
+        echo '<a href="index.php?page=' . $i . '">' . $i . '</a>&nbsp;';
     }
     echo '</p>';
 ?>
