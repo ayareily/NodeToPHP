@@ -3,8 +3,8 @@
     
     $num = 10;
 
-    $dsn ='mysql:host=localhost;dbname=tennis;charset=utf8';
-    $user = 'tennisuser';
+    $dsn ='mysql:host=localhost;dbname=secret_board;charset=utf8';
+    $user = 'bbsuser';
     $password = 'password';
 
     $page = 0;
@@ -16,7 +16,7 @@
         $db = new PDO($dsn, $user, $password);
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $stmt = $db->prepare(
-            'SELECT * FROM bbs ORDER BY date DESC LIMIT :page, :num'
+            'SELECT * FROM post ORDER BY date DESC LIMIT :page, :num'
         );
         $page = $page * $num;
         $stmt->bindParam(':page', $page, PDO::PARAM_INT);
@@ -42,7 +42,7 @@
     <hr />
 <?php
     while ($row = $stmt->fetch()):
-        $title = $row['title'] ? $row['title'] : '（無題）';
+        $title = $row['content'] ? $row['content'] : '（無題）';
 ?>
     <p><?php echo nl2br(htmlspecialchars($body, ENT_QUOTES, 'UTF-8'), false) ?></p>
     <p><?php echo $row['date'] ?></p>
@@ -55,7 +55,7 @@
     endwhile;
 
     try{
-        $stmt = $db->prepare('SELECT COUNT(*) FROM bbs');
+        $stmt = $db->prepare('SELECT COUNT(*) FROM post');
         $stmt->execute();
     }   catch (PDOException $e) {
         echo 'エラー：' . $e->getMessage();
