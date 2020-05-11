@@ -4,7 +4,7 @@
     $content = $_POST['content'];
     $postedBy = $_POST['postedBy'];
 
-    if ($content == '' || $postedBy == '') {
+    if ($content == '') {
         header('Location: index.php');
         exit();
     }

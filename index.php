@@ -38,19 +38,16 @@
     <form action="write.php" method="post">
         <textarea name="content" cols="40" rows="4"></textarea>
         <p><input type="submit" value="投稿">
-        <input type="hidden" name="token" value="<?php echo sha1(session_id()); ?>"></p>
     </form>
     <hr />
 <?php
     while ($row = $stmt->fetch()):
-        $title = $row['content'] ? $row['content'] : '（無題）';
 ?>
-    <p><?php echo nl2br(htmlspecialchars($body, ENT_QUOTES, 'UTF-8'), false) ?></p>
+    <p><?php echo nl2br($row['content']) ?></p>
     <p><?php echo $row['date'] ?></p>
     <form action="delete.php" method="post">
         <input type="hidden" name="id" value="<?php echo $row ['id']; ?>">
         <input type="submit" value="削除">
-        <input type="hidden" name="token" value="<?php echo sha1(session_id()); ?>">
     </form>
 <?php
     endwhile;
