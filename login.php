@@ -38,11 +38,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>テニスサークル交流サイト</title>
+    <title>ログイン</title>
 </head>
 <body>
-    <h1>テニスサークル交流サイト</h1>
-    <h2>ログイン</h2>
+    <h1>秘密の匿名掲示板ログイン</h1>
+    <h2>ログインフォーム</h2>
     <form action="login.php" method="post">
         <p>ユーザ名：<input type="text" name="name"></p>
         <p>パスワード：<input type="password" name="password"></p>
