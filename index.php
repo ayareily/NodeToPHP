@@ -1,73 +1,20 @@
 <?php
     include 'includes/login.php';
     
-    $num = 10;
-
-    $dsn ='mysql:host=localhost;dbname=secret_board;charset=utf8';
-    $user = 'bbsuser';
-    $password = 'password';
-    $name = $_POST['name'];
-
-    $page = 0;
-    if (isset($_GET['page']) && $_GET['page'] > 0){
-        $page = intval($_GET['page']) -1;
-    }
-
-    try {
-        $db = new PDO($dsn, $user, $password);
-        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $stmt = $db->prepare(
-            'SELECT * FROM post ORDER BY date DESC LIMIT :page, :num'
-        );
-        $page = $page * $num;
-        $stmt->bindParam(':page', $page, PDO::PARAM_INT);
-        $stmt->bindParam(':num', $num, PDO::PARAM_INT);
-        $stmt->execute();
-    } catch (PDOException $e){
-        echo 'エラー：' . $e->getMessage();
-    }
-
 ?>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>秘密の匿名掲示板</title>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>テニスサークル交流サイト</title>
 </head>
 <body>
-    <h1>秘密の匿名掲示板</h1>
-    <h2>新規投稿</h2>
-    <a href="logout.php">ログアウト</a>
-    <form action="write.php" method="post">
-        <textarea name="content" cols="40" rows="4"></textarea>
-        <input type="hidden" name="postedBy" value="<?php echo $name ?>">
-        <p><input type="submit" value="投稿">
-    </form>
-    <hr />
-<?php
-    while ($row = $stmt->fetch()):
-?>
-    <p><?php echo nl2br($row['content']) ?></p>
-    <p><?php echo $row['date'] ?></p>
-    <form action="delete.php" method="post">
-        <input type="hidden" name="id" value="<?php echo $row ['id']; ?>">
-        <input type="submit" value="削除">
-    </form>
-<?php
-    endwhile;
-
-    try{
-        $stmt = $db->prepare('SELECT COUNT(*) FROM post');
-        $stmt->execute();
-    }   catch (PDOException $e) {
-        echo 'エラー：' . $e->getMessage();
-    }
-    $comments = $stmt->fetchColumn();
-    $max_page = ceil($comments / $num);
-    echo '<p>';
-    for ($i =1; $i <= $max_page; $i++){
-        echo '<a href="index.php?page=' . $i . '">' . $i . '</a>&nbsp;';
-    }
-    echo '</p>';
-?>
+    <h1>テニスサークル交流サイト</h1>
+    <h2>メニュー</h2>
+    <p>
+        <a href="album.php">アルバム</a>
+        <a href="bbs.php">掲示板</a>
+        <a href="logout.php">ログアウト</a>
+    </p>
+    <h2>お知らせ</h2>
 </body>
 </html>

@@ -1,8 +1,9 @@
 <?php
     include 'includes/login.php';
+    include 'includes/db.php';
 
     $content = $_POST['content'];
-    $postedBy = $_POST['postedBy'];
+    $postedBy = $_SESSION['userid'];
 
     if ($content == '') {
         header('Location: index.php');
@@ -13,11 +14,7 @@
         header('Location: index.php');
         exit();
     }
-    setcookie('postedBy', $postedBy, time() + 60 * 60 * 24 * 30);
-
-    $dsn = 'mysql:host=localhost;dbname=secret_board;charset=utf8';
-    $user = 'bbsuser';
-    $password = 'password';
+    setcookie('userid', $userid, time() + 60 * 60 * 24 * 30);
 
     try{
         $db = new PDO($dsn, $user, $password);
@@ -27,7 +24,7 @@
         VALUES (:content, :postedBy, now())"
     );
     $stmt->bindParam(':content', $content, PDO::PARAM_STR);
-    $stmt->bindParam(':postedBy', $postedBy, PDO::PARAM_STR);
+    $stmt->bindParam(':postedBy', $userid, PDO::PARAM_STR);
     $stmt->execute();
 
     header('Location: index.php');

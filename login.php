@@ -12,9 +12,9 @@
         try{
             $db = new PDO($dsn, $user, $password);
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-            $stmt = $db->prepare('
+            $stmt = $db->prepare("
             SELECT * FROM users WHERE name=:name AND password=:pass
-            ');
+            ");
 
             $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
             $stmt->bindParam(':pass', sha1($_POST['password']), PDO::PARAM_STR);
@@ -38,11 +38,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>匿名掲示板ログイン</title>
+    <title>テニスサークル交流サイト</title>
 </head>
 <body>
-    <h1>匿名掲示板ログイン</h1>
-    <h2>ログインフォーム</h2>
+    <h1>テニスサークル交流サイト</h1>
+    <h2>ログイン</h2>
     <form action="login.php" method="post">
         <p>ユーザ名：<input type="text" name="name"></p>
         <p>パスワード：<input type="password" name="password"></p>
