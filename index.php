@@ -49,7 +49,6 @@
     <p><?php echo $row['date'] ?></p>
     <form action="delete.php" method="post">
         <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-        <input type="hidden" name="userid" value="<?php echo $row['user_id']; ?>">
         <button type="submit">削除</button>
     </form>
 <?php
