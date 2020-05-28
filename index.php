@@ -1,30 +1,6 @@
 <?php
     include 'includes/login.php';
 
-    $num = 10;
-
-    $dsn ='mysql:host=localhost;dbname=secret_board;charset=utf8';
-    $user = 'bbssuser';
-    $password = 'password';
-
-    $page = 0;
-    if (isset($_GET['page']) && $_GET['page'] > 0){
-        $page = intval($_GET['page']) -1;
-    }
-
-    try {
-        $db = new PDO($dsn, $user, $password);
-        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $stmt = $db->prepare(
-            'SELECT * FROM bbs ORDER BY date DESC LIMIT :page, :num'
-        );
-        $page = $page * $num;
-        $stmt->bindParam(':page', $page, PDO::PARAM_INT);
-        $stmt->bindParam(':num', $num, PDO::PARAM_INT);
-        $stmt->execute();
-    } catch (PDOException $e){
-        echo 'エラー：' . $e->getMessage();
-    }
 ?>
 
 <html>
@@ -37,10 +13,8 @@
     <p><a href="index.php">トップページに戻る</a></p>
     <a href="logout.php">ログアウト</a>
     <form action="write.php" method="post">
-        <p>タイトル：<input type="text" name="title"></p>
-        <textarea name="body"></textarea>
+        <textarea name="content"></textarea>
         <p><input type="submit" value="書き込む">
-        <input type="hidden" name="token" value="<?php echo sha1(session_id()); ?>"></p>
     </form>
     <hr />
 </body>
