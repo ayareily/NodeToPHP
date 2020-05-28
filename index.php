@@ -3,8 +3,8 @@
 
     $num = 10;
 
-    $dsn ='mysql:host=localhost;dbname=tennis;charset=utf8';
-    $user = 'tennisuser';
+    $dsn ='mysql:host=localhost;dbname=secret_board;charset=utf8';
+    $user = 'bbssuser';
     $password = 'password';
 
     $page = 0;
@@ -37,10 +37,8 @@
     <p><a href="index.php">トップページに戻る</a></p>
     <a href="logout.php">ログアウト</a>
     <form action="write.php" method="post">
-        <p>名前：<input type="text" name="name" value="<?php echo $_COOKIE['name'] ?>"></p>
         <p>タイトル：<input type="text" name="title"></p>
         <textarea name="body"></textarea>
-        <p>削除パスワード（数字4桁）：<input type="text" name="pass"></p>
         <p><input type="submit" value="書き込む">
         <input type="hidden" name="token" value="<?php echo sha1(session_id()); ?>"></p>
     </form>
