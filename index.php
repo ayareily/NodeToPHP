@@ -34,7 +34,6 @@
 </head>
 <body>
     <h1>掲示板</h1>
-    <p><a href="index.php">トップページに戻る</a></p>
     <a href="logout.php">ログアウト</a>
     <form action="write.php" method="post">
         <textarea name="content"></textarea>
@@ -49,8 +48,9 @@
     <p><?php echo nl2br(htmlspecialchars($row['content'], ENT_QUOTES, 'UTF-8'), false) ?></p>
     <p><?php echo $row['date'] ?></p>
     <form action="delete.php" method="post">
-        <input type="hidden" name="id" value="<?php echo $row ['id']; ?>">
+        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
         <input type="hidden" name="token" value="<?php echo sha1(session_id()); ?>">
+        <button type="submit">削除</button>
     </form>
 <?php
     endwhile;
@@ -61,12 +61,6 @@
     }   catch (PDOException $e) {
         echo 'エラー：' . $e->getMessage();
     }
-    $max_page = ceil($comments / $num);
-    echo '<p>';
-    for ($i =1; $i <= $max_page; $i++){
-        echo '<a href="bbs.php?page=' . $i . '">' . $i . '</a>&nbsp;';
-    }
-    echo '</p>';
 ?>
 </body>
 </html>
