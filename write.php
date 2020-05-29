@@ -3,10 +3,8 @@
 
     $content = $_POST['content'];
     $userid = $_SESSION['id'];
-
-    setcookie('trackingid', $trackingid, time() + 60 * 60 * 24 * 30);
-
-    $trackingid = $_COOKIE['trackingid'];
+    $trackingid = random_bytes(16);
+    
 /*
     if ($token !=sha1(session_id())){
         header('Location: index.php');
@@ -23,11 +21,11 @@
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $stmt = $db->prepare("
         INSERT INTO post (content, user_id, date, cookie)
-        VALUES (:content, :userid, now(), :cookie)"
+        VALUES (:content, :userid, now(), :trackingid)"
     );
     $stmt->bindParam(':content', $content, PDO::PARAM_STR);
     $stmt->bindParam(':userid', $userid, PDO::PARAM_INT);
-    $stmt->bindParam(':cookie', $trackingid, PDO::PARAM_STR);
+    $stmt->bindParam(':trackingid', $trackingid, PDO::PARAM_STR);
     $stmt->execute();
 
     header('Location: index.php');

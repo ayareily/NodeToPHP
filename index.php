@@ -44,7 +44,7 @@
 <?php
     while ($row = $stmt->fetch()):
 ?>
-    <p>名前：<?php echo $row['user_id'] ?></p>
+    <p>名前：<?php echo $row['cookie'] ?></p>
     <p><?php echo nl2br(htmlspecialchars($row['content'], ENT_QUOTES, 'UTF-8'), false) ?></p>
     <p><?php echo $row['date'] ?></p>
     <form action="delete.php" method="post">

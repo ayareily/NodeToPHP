@@ -18,7 +18,6 @@
 
             $stmt->bindParam(':name', $_POST['name'], PDO::PARAM_STR);
             $stmt->bindParam(':pass', sha1($_POST['password']), PDO::PARAM_STR);
-
             $stmt->execute();
 
             if ($row = $stmt->fetch()){
