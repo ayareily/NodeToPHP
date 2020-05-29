@@ -22,6 +22,7 @@
 
             if ($row = $stmt->fetch()){
                 $_SESSION['id'] = $row['id'];
+                $_SESSION['trackingid'] = bin2hex(random_bytes(16));
                 session_regenerate_id(true);
                 header('Location: index.php');
                 exit();

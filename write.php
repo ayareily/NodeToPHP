@@ -3,7 +3,7 @@
 
     $content = $_POST['content'];
     $userid = $_SESSION['id'];
-    $trackingid = random_bytes(16);
+    $trackingid = $_SESSION['trackingid'];
     
 /*
     if ($token !=sha1(session_id())){
