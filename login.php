@@ -1,7 +1,7 @@
 <?php
     session_start();//session開始
 
-    if (isset($_SESSION['id'])){
+    if (isset($_SESSION['id']) && isset($_SESSION['name'])){
         header ('Location: index.php');
     } else if (isset($_POST['name']) && isset($_POST['password'])){
         
@@ -22,6 +22,7 @@
 
             if ($row = $stmt->fetch()){
                 $_SESSION['id'] = $row['id'];
+                $_SESSION['name'] = $row['name'];
                 $_SESSION['trackingid'] = bin2hex(random_bytes(16));
                 session_regenerate_id(true);
                 header('Location: index.php');
@@ -39,6 +40,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>ログイン</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
     <h1>秘密の匿名掲示板ログイン</h1>

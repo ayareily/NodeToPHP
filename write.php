@@ -3,6 +3,7 @@
 
     $content = $_POST['content'];
     $userid = $_SESSION['id'];
+    $postedby = $_SESSION['name'];
     $trackingid = $_SESSION['trackingid'];
     
 /*
@@ -20,11 +21,12 @@
         $db = new PDO($dsn, $user, $password);
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         $stmt = $db->prepare("
-        INSERT INTO post (content, user_id, date, cookie)
-        VALUES (:content, :userid, now(), :trackingid)"
+        INSERT INTO post (content, user_id, postedby, date, cookie)
+        VALUES (:content, :userid, :postedby, now(), :trackingid)"
     );
     $stmt->bindParam(':content', $content, PDO::PARAM_STR);
     $stmt->bindParam(':userid', $userid, PDO::PARAM_INT);
+    $stmt->bindParam(':postedby', $postedby, PDO::PARAM_STR);
     $stmt->bindParam(':trackingid', $trackingid, PDO::PARAM_STR);
     $stmt->execute();
 
