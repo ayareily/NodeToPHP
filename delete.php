@@ -24,10 +24,10 @@ try {
     $db = new PDO($dsn, $user, $password);
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     $stmt = $db->prepare(
-        "DELETE FROM post WHERE id=:id AND user_id=:userid"
+        "DELETE FROM post WHERE id=:id"
     );
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->bindParam(':userid', $userid, PDO::PARAM_INT);
+    //$stmt->bindParam(':userid', $userid, PDO::PARAM_INT);
     $stmt->execute();
 } catch(PDOException $e){
     echo 'エラー：' . $e->getMessage();
