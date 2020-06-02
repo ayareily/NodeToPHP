@@ -67,12 +67,14 @@
                 投稿日時：<?php echo $row['date'] ?><br>
                 投稿者：<?php echo $row['postedby'] ?>
             </div>
+            <?php if ($row['user_id'] == $_SESSION['id'] || $_SESSION['id'] === 1):?>
             <div>
                 <form action="delete.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                     <input type="hidden" name="postedby" value="<?php echo $row['postedby'] ?>">
                     <button type="submit" class="btn btn-danger float-right">削除</button>
             </div>
+            <?php endif; ?>
         </div>
     </div>
     </form>
