@@ -57,7 +57,7 @@
 ?>
     <div class="card my-3">
         <div class="card-header">
-            <?php echo $row['id'] ?>：ID：<?php echo $row['cookie'] ?>
+            <?php echo $row['id'] ?>：ID：<?php echo $row['trackingid'] ?>
         </div>
         <div class="card-body">
             <?php echo nl2br(htmlspecialchars($row['content'], ENT_QUOTES, 'UTF-8'), false) ?>
@@ -67,10 +67,12 @@
                 投稿日時：<?php echo $row['date'] ?><br>
                 投稿者：<?php echo $row['postedby'] ?>
             </div>
-            <form action="delete.php" method="post">
-                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                <input type="hidden" name="postedby" value="<?php echo $row['postedby'] ?>">
-                <button type="submit" class="btn btn-danger float-right">削除</button>
+            <div>
+                <form action="delete.php" method="post">
+                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" name="postedby" value="<?php echo $row['postedby'] ?>">
+                    <button type="submit" class="btn btn-danger float-right">削除</button>
+            </div>
         </div>
     </div>
     </form>
