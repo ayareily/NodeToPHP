@@ -57,7 +57,13 @@
 ?>
     <div class="card my-3">
         <div class="card-header">
-            <?php echo $row['id'] ?>：ID：<?php echo $row['trackingid'] ?>
+        
+            <?php echo $row['id'] ?>：ID：
+            <?php if ($row['user_id'] === 1 ): ?>
+            管理人　★
+            <?php else: ?>
+            <?php echo $row['trackingid'] ?>
+            <?php endif; ?>
         </div>
         <div class="card-body">
             <?php echo nl2br(htmlspecialchars($row['content'], ENT_QUOTES, 'UTF-8'), false) ?>
@@ -65,9 +71,11 @@
         <div class="card-footer">
             <div>
                 投稿日時：<?php echo $row['date'] ?><br>
+                <?php if ($_SESSION['id'] === 1): ?>
                 投稿者：<?php echo $row['postedby'] ?>
+                <?php endif; ?>
             </div>
-            <?php if ($row['user_id'] == $_SESSION['id'] || $_SESSION['id'] === 1):?>
+            <?php if ($row['user_id'] == $_SESSION['id'] || $_SESSION['id'] === 1): ?>
             <div>
                 <form action="delete.php" method="post">
                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
