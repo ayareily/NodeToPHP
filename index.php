@@ -44,6 +44,7 @@
         <div class="form-group">
             <textarea class="form-control col-sm-12" name="content" rows="5"></textarea>
             <button type="submit" class="btn btn-primary float-right mt-2">投稿</button>
+            <input type="hidden" name="token" value="<?php echo sha1(session_id()); ?>">
         </div>
     </form>
     <br>
@@ -80,6 +81,7 @@
                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                     <input type="hidden" name="postedby" value="<?php echo $row['postedby'] ?>">
                     <button type="submit" class="btn btn-danger float-right">削除</button>
+                    <input type="hidden" name="token" value="<?php echo sha1(session_id()); ?>">
             </div>
             <?php endif; ?>
         </div>

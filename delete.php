@@ -3,18 +3,17 @@ include 'includes/login.php';
 
 $id = intval($_POST['id']);
 $userid = $_SESSION['id'];
+$token = $_POST['token'];
 
 if ($id == '' || $userid == ''){
     header ('Location: index.php');
     exit();
 }
 
-/*
 if ($token != sha1(session_id())){
     header('Location: bbs.php');
     exit();
 }
-*/
 
 $dsn = 'mysql:host=localhost; dbname=secret_board;charset=utf8';
 $user = 'bbsuser';

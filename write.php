@@ -5,13 +5,12 @@
     $userid = $_SESSION['id'];
     $postedby = $_SESSION['name'];
     $trackingid = $_SESSION['trackingid'];
+    $token = $_POST['token'];
     
-/*
-    if ($token !=sha1(session_id())){
+    if ($token != sha1(session_id())){
         header('Location: index.php');
         exit();
     }
-    */
 
     $dsn = 'mysql:host=localhost;dbname=secret_board;charset=utf8';
     $user = 'bbsuser';
