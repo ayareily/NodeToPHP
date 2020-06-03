@@ -42,7 +42,7 @@
     <h2>新規投稿</h2>
     <form action="write.php" method="post">
         <div class="form-group">
-            <textarea class="form-control form-control-lg col-sm-12" name="content"></textarea>
+            <textarea class="form-control col-sm-12" name="content" rows="5"></textarea>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">投稿</button>
