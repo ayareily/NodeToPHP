@@ -43,12 +43,11 @@
     <form action="write.php" method="post">
         <div class="form-group">
             <textarea class="form-control col-sm-12" name="content" rows="5"></textarea>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">投稿</button>
+            <button type="submit" class="btn btn-primary float-right mt-2">投稿</button>
         </div>
     </form>
-    <hr />
+    <br>
+    </hr>
 
     <h2>投稿一覧</h2>
 
